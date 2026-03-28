@@ -19,42 +19,32 @@ private:
 
 public:
     MinHeap() { size = 0; }
-
     bool IsEmpty() const {
         return size == 0;
     }
-
     const T& Top() const {
         return heap[1];
     }
-
     void Push(const T& x) {
         heap[++size] = x;
         int i = size;
-
         while (i > 1 && heap[i] < heap[i / 2]) {
             swap(heap[i], heap[i / 2]);
             i /= 2;
         }
     }
-
     void Pop() {
         heap[1] = heap[size--];
         int i = 1;
-
         while (2 * i <= size) {
             int child = 2 * i;
-
             if (child + 1 <= size && heap[child + 1] < heap[child])
                 child++;
-
             if (heap[i] <= heap[child]) break;
-
             swap(heap[i], heap[child]);
             i = child;
         }
     }
-
     void Print() {
         for (int i = 1; i <= size; i++)
             cout << heap[i] << " ";
@@ -64,20 +54,15 @@ public:
 
 int main() {
     MinHeap<int> h;
-
     h.Push(30);
     h.Push(10);
     h.Push(20);
     h.Push(5);
-
-    cout << "Heap: ";
+    cout << "目前: ";
     h.Print();
-
     cout << "Top (Min): " << h.Top() << endl;
-
     h.Pop();
-    cout << "After Pop: ";
+    cout << "之後 : ";
     h.Print();
-
     return 0;
 }
